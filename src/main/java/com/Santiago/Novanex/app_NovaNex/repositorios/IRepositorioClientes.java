@@ -1,4 +1,7 @@
 package com.Santiago.Novanex.app_NovaNex.repositorios;
 
-public interface IRepositorioClientes {
+import com.Santiago.Novanex.app_NovaNex.Entidadesmodelos.EntidadModeloClientes;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface IRepositorioClientes extends JpaRepository<EntidadModeloClientes, Integer> {
 }
