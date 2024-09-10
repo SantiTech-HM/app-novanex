@@ -1,17 +1,22 @@
 package com.Santiago.Novanex.app_NovaNex.EntidadesOModelos;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 
 import java.time.LocalDate;
-@Getter
-@Setter
+
+
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+@Table(name = "clientes")
 public class EntidadClientes {
 
     @Id
