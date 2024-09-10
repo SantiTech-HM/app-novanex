@@ -1,4 +1,4 @@
-package com.Santiago.Novanex.app_NovaNex.Entidadesmodelos;
+package com.Santiago.Novanex.app_NovaNex.EntidadesOModelos;
 
 
 import jakarta.persistence.Entity;
@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Entity
-public class EntidadModeloClientes {
+public class EntidadClientes {
 
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
