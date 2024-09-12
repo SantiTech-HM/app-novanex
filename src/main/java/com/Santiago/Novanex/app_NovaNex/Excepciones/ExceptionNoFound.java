@@ -1,4 +1,4 @@
-package com.Santiago.Novanex.app_NovaNex.Controladores;
+package com.Santiago.Novanex.app_NovaNex.Excepciones;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
