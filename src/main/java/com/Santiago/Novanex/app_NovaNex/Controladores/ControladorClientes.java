@@ -55,7 +55,7 @@ public class ControladorClientes {
         }
         iServicioClientes.deleteClientes(clientes);
         Map<String,Boolean> response = new HashMap<>();
-        response.put("Deleted", Boolean.TRUE);
+        response.put("Cliente eliminado", Boolean.TRUE);
         return ResponseEntity.ok(response);
     }
 }
