@@ -1,6 +1,6 @@
 package com.Santiago.Novanex.app_NovaNex.Servicios;
 
-import com.Santiago.Novanex.app_NovaNex.EntidadesOModelos.EntidadClientes;
+import com.Santiago.Novanex.app_NovaNex.EntidadesOModelos.Clientes;
 import com.Santiago.Novanex.app_NovaNex.Repositorios.IRepositorioClientes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,22 +14,22 @@ public class ServicioClientes  implements IServicioClientes{
     private IRepositorioClientes iRepositorioClientes;
 
     @Override
-    public List<EntidadClientes> listEntidadClientes() {
+    public List<Clientes> listClientes() {
         return iRepositorioClientes.findAll();
-
     }
+
     @Override
-    public EntidadClientes findEntidadClietesById(Integer id) {
+    public Clientes findClientesById(Integer id) {
         return iRepositorioClientes.findById(id).orElse(null);
-
     }
-    @Override
-    public EntidadClientes saveEntidadClietes(EntidadClientes entidadClientes){
-        return iRepositorioClientes.save(entidadClientes);
 
-    }
     @Override
-    public EntidadClientes deleteEntidadClietes(EntidadClientes entidadClientes){
-        iRepositorioClientes.delete(entidadClientes);
+    public Clientes saveClientes(Clientes clientes) {
+        return iRepositorioClientes.save(clientes);
+    }
+
+    @Override
+    public void deleteClientes(Clientes clientes) {
+        iRepositorioClientes.delete(clientes);
     }
 }

@@ -1,18 +1,18 @@
 package com.Santiago.Novanex.app_NovaNex.Servicios;
 
-import com.Santiago.Novanex.app_NovaNex.EntidadesOModelos.EntidadClientes;
+import com.Santiago.Novanex.app_NovaNex.EntidadesOModelos.Clientes;
 
 import java.util.List;
 
 public interface IServicioClientes {
 
-    public List<EntidadClientes> listEntidadClientes();
+    public List<Clientes> listClientes();
 
-    public EntidadClientes findEntidadClientesById(Integer id);
+    public Clientes findClientesById(Integer id);
 
-    public EntidadClientes saveEntidadClientes (EntidadClientes entidadClientes);
+    public Clientes saveClientes (Clientes clientes);
 
-    public void  deleteEntidadClientes (EntidadClientes  entidadClientes);
+    public void  deleteClientes (Clientes clientes);
 
 
 }

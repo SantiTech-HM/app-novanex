@@ -17,7 +17,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @ToString
 @Table(name = "clientes")
-public class EntidadClientes {
+public class Clientes {
 
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
