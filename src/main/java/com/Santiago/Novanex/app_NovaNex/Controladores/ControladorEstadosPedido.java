@@ -38,7 +38,7 @@ public class ControladorEstadosPedido {
     public EstadosPedido postEstadosPedido(@RequestBody EstadosPedido estadosPedido){
         return iServicioEstadosPedido.saveEstadosPedido(estadosPedido);
     }
-    @PutMapping("estadopedido/{id}")
+    @PutMapping("estadospedido/{id}")
     public ResponseEntity<EstadosPedido> putEstadosPedidoById(@PathVariable Integer id, @RequestBody EstadosPedido estadosPedidoObjeto){
         EstadosPedido estadosPedido = iServicioEstadosPedido.findEstadosPedidoById(id);
         if(estadosPedido == null){
