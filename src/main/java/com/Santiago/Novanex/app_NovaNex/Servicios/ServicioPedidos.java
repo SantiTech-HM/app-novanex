@@ -38,7 +38,7 @@ public class ServicioPedidos implements IServicioPedidos{
         pedidos.setClientes(pedidosDetails.getClientes());
         pedidos.setEstadosPedido(pedidosDetails.getEstadosPedido());
         pedidos.setEstadosDevolucion(pedidosDetails.getEstadosDevolucion());
-        pedidos.setMetodoPago(pedidosDetails.getMetodoPago());
+        pedidos.setMetodosPago(pedidosDetails.getMetodosPago());
         pedidos.setPrecioTotal(pedidosDetails.getPrecioTotal());
         pedidos.setFechaCreacion(pedidosDetails.getFechaCreacion());
         return iRepositorioPedidos.save(pedidos);
@@ -52,22 +52,22 @@ public class ServicioPedidos implements IServicioPedidos{
 
     @Override
     public List<Pedidos> findPedidosPorCliente(Integer clienteId) {
-        return iRepositorioPedidos.findByClienteId(clienteId);
+        return iRepositorioPedidos.findByClientesId(clienteId);
     }
 
     @Override
     public List<Pedidos> findPedidosPorEstado(Integer estadoId) {
-        return iRepositorioPedidos.findByEstadoId(estadoId);
+        return iRepositorioPedidos.findByEstadosPedidoId(estadoId);
     }
 
     @Override
     public List<Pedidos> findPedidosPorEstadoDevolucion(Integer estadoDevolucionId) {
-        return iRepositorioPedidos.findByEstadoDevolucionId(estadoDevolucionId);
+        return iRepositorioPedidos.findByEstadosDevolucionId(estadoDevolucionId);
     }
 
     @Override
     public List<Pedidos> findPedidosPorMetodoPago(Integer metodoPagoId) {
-        return iRepositorioPedidos.findByMetodoPagoId(metodoPagoId);
+        return iRepositorioPedidos.findByMetodosPagoId(metodoPagoId);
     }
 
     @Override

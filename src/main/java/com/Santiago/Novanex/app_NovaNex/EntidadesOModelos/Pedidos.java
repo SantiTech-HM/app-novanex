@@ -39,7 +39,7 @@ public class Pedidos {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "metodo_pago_id", nullable = false)
-    private MetodosPago metodoPago;
+    private MetodosPago metodosPago;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "fecha_creacion", nullable = false)
@@ -77,12 +77,12 @@ public class Pedidos {
         this.estadosDevolucion = estadosDevolucion;
     }
 
-    public MetodosPago getMetodoPago() {
-        return metodoPago;
+    public MetodosPago getMetodosPago() {
+        return metodosPago;
     }
 
-    public void setMetodoPago(MetodosPago metodoPago) {
-        this.metodoPago = metodoPago;
+    public void setMetodosPago(MetodosPago metodosPago) {
+        this.metodosPago = metodosPago;
     }
 
     public LocalDateTime getFechaCreacion() {

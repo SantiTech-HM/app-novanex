@@ -10,9 +10,9 @@ import java.util.List;
 @Repository
 public interface IRepositorioPedidos extends JpaRepository<Pedidos, Integer> {
 
-    List<Pedidos> findByClienteId(Integer clienteId);
-    List<Pedidos> findByEstadoId(Integer estadoId);
-    List<Pedidos> findByEstadoDevolucionId(Integer estadoDevolucionId);
-    List<Pedidos> findByMetodoPagoId(Integer metodoPagoId);
+    List<Pedidos> findByClientesId(Integer clienteId);
+    List<Pedidos> findByEstadosPedidoId(Integer estadoId);
+    List<Pedidos> findByEstadosDevolucionId(Integer estadoDevolucionId);
+    List<Pedidos> findByMetodosPagoId(Integer metodoPagoId);
     List<Pedidos> findByFechaCreacionBetween(LocalDateTime inicio, LocalDateTime fin);
 }
