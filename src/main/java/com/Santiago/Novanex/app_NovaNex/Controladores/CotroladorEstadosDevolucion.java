@@ -1,10 +1,8 @@
 package com.Santiago.Novanex.app_NovaNex.Controladores;
 
 
-import com.Santiago.Novanex.app_NovaNex.EntidadesOModelos.Clientes;
 import com.Santiago.Novanex.app_NovaNex.EntidadesOModelos.EstadosDevolucion;
-import com.Santiago.Novanex.app_NovaNex.Excepciones.ExceptionNoFound;
-import com.Santiago.Novanex.app_NovaNex.Servicios.IServicioClientes;
+import com.Santiago.Novanex.app_NovaNex.Excepciones.ExcepcioGlobal;
 import com.Santiago.Novanex.app_NovaNex.Servicios.IServicioEstadosDevolucion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +30,7 @@ public class CotroladorEstadosDevolucion {
     public ResponseEntity<EstadosDevolucion> getEstadoDeDevolucionById(@PathVariable Integer id) {
         EstadosDevolucion estadosDevolucion = iServicioEstadosDevolucion.findEstadosDevolucionById(id);
         if (estadosDevolucion == null){
-            throw new ExceptionNoFound("La devolucion no existe:" + id);
+            throw new ExcepcioGlobal("La devolucion no existe:" + id);
         }
         return ResponseEntity.ok(estadosDevolucion);
     }
@@ -44,7 +42,7 @@ public class CotroladorEstadosDevolucion {
     public ResponseEntity<EstadosDevolucion> putEstadoDevolucionById(@PathVariable Integer id, @RequestBody EstadosDevolucion estadosDevolucionObjeto) {
         EstadosDevolucion estadosDevolucion = iServicioEstadosDevolucion.findEstadosDevolucionById(id);
         if (estadosDevolucion == null){
-            throw new ExceptionNoFound("ID del estado de la devolucion no encontrado:" + id);
+            throw new ExcepcioGlobal("ID del estado de la devolucion no encontrado:" + id);
         }
         estadosDevolucion.setEstado(estadosDevolucionObjeto.getEstado());
 
@@ -55,7 +53,7 @@ public class CotroladorEstadosDevolucion {
     public ResponseEntity<Map<String, Boolean>> deleteEstadosdevolucionById(@PathVariable Integer id){
         EstadosDevolucion estadosDevolucion = iServicioEstadosDevolucion.findEstadosDevolucionById(id);
         if (estadosDevolucion == null){
-            throw new ExceptionNoFound("ID de estado de devolucion no encontrado:" + id);
+            throw new ExcepcioGlobal("ID de estado de devolucion no encontrado:" + id);
         }
         iServicioEstadosDevolucion.deleteEstadosDevolucion(estadosDevolucion);
         Map<String,Boolean> response = new HashMap<>();

@@ -2,7 +2,7 @@ package com.Santiago.Novanex.app_NovaNex.Controladores;
 
 
 import com.Santiago.Novanex.app_NovaNex.EntidadesOModelos.EstadosPedido;
-import com.Santiago.Novanex.app_NovaNex.Excepciones.ExceptionNoFound;
+import com.Santiago.Novanex.app_NovaNex.Excepciones.ExcepcioGlobal;
 import com.Santiago.Novanex.app_NovaNex.Servicios.IServicioEstadosPedido;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +29,7 @@ public class ControladorEstadosPedido {
     public ResponseEntity<EstadosPedido> getEstadoDelPedidoById(@PathVariable Integer id) {
             EstadosPedido estadosPedido = iServicioEstadosPedido.findEstadosPedidoById(id);
             if (estadosPedido == null){
-                throw new ExceptionNoFound("el estado del pedido no existe:" + id);
+                throw new ExcepcioGlobal("el estado del pedido no existe:" + id);
             }
             return ResponseEntity.ok(estadosPedido);
     }
@@ -42,7 +42,7 @@ public class ControladorEstadosPedido {
     public ResponseEntity<EstadosPedido> putEstadosPedidoById(@PathVariable Integer id, @RequestBody EstadosPedido estadosPedidoObjeto){
         EstadosPedido estadosPedido = iServicioEstadosPedido.findEstadosPedidoById(id);
         if(estadosPedido == null){
-            throw new ExceptionNoFound("ID estado del pedido no encontrado:" + id);
+            throw new ExcepcioGlobal("ID estado del pedido no encontrado:" + id);
 
         }
         estadosPedido.setEstado(estadosPedidoObjeto.getEstado());
@@ -55,7 +55,7 @@ public class ControladorEstadosPedido {
     public ResponseEntity<Map<String, Boolean>> deleteEstadosPedidoById(@PathVariable Integer id) {
         EstadosPedido estadosPedido = iServicioEstadosPedido.findEstadosPedidoById(id);
         if (estadosPedido == null){
-            throw new ExceptionNoFound("ID estado del pedido  no encontrado:" + id);
+            throw new ExcepcioGlobal("ID estado del pedido  no encontrado:" + id);
         }
 
     iServicioEstadosPedido.deleteEstadosPedido(estadosPedido);

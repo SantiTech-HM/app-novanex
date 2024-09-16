@@ -2,7 +2,7 @@ package com.Santiago.Novanex.app_NovaNex.Controladores;
 
 
 import com.Santiago.Novanex.app_NovaNex.EntidadesOModelos.Categorias;
-import com.Santiago.Novanex.app_NovaNex.Excepciones.ExceptionNoFound;
+import com.Santiago.Novanex.app_NovaNex.Excepciones.ExcepcioGlobal;
 import com.Santiago.Novanex.app_NovaNex.Servicios.IServicioCategorias;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +29,7 @@ public class ControladorCategorias {
     public ResponseEntity<Categorias> getCategoriaById(@PathVariable Integer id) {
         Categorias categorias = iServicioCategorias.findCategoriasById(id);
         if (categorias == null){
-            throw new ExceptionNoFound("la categotia no existe:" + id);
+            throw new ExcepcioGlobal("la categotia no existe:" + id);
         }
         return ResponseEntity.ok(categorias);
     }
@@ -41,7 +41,7 @@ public class ControladorCategorias {
     public ResponseEntity<Categorias> putCategoriaById(@PathVariable Integer id, @RequestBody Categorias categoriasObjeto) {
         Categorias categorias = iServicioCategorias.findCategoriasById(id);
         if (categorias == null){
-            throw new ExceptionNoFound("ID de la categoria no encontrado:" + id);
+            throw new ExcepcioGlobal("ID de la categoria no encontrado:" + id);
         }
         categorias.setNombre(categoriasObjeto.getNombre());
         categorias.setDescripcion(categoriasObjeto.getDescripcion());
@@ -53,7 +53,7 @@ public class ControladorCategorias {
     public ResponseEntity<Map<String, Boolean>> deleteCategoriasById(@PathVariable Integer id){
         Categorias categorias = iServicioCategorias.findCategoriasById(id);
         if (categorias == null){
-            throw new ExceptionNoFound("ID de producto no encontrado:" + id);
+            throw new ExcepcioGlobal("ID de producto no encontrado:" + id);
         }
         iServicioCategorias.deleteCategorias(categorias);
         Map<String,Boolean> response = new HashMap<>();

@@ -26,7 +26,7 @@ public class Pedidos {
     private Clientes clientes;
 
     @Column(name = "precio_total", nullable = false)
-    private Boolean precioTotal;
+    private Double precioTotal;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "estado_id", nullable = false)
@@ -53,11 +53,11 @@ public class Pedidos {
         this.clientes = clientes;
     }
 
-    public Boolean getPrecioTotal() {
+    public Double getPrecioTotal() {
         return precioTotal;
     }
 
-    public void setPrecioTotal(Boolean precioTotal) {
+    public void setPrecioTotal(Double precioTotal) {
         this.precioTotal = precioTotal;
     }
 

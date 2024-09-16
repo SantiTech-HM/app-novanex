@@ -1,10 +1,8 @@
 package com.Santiago.Novanex.app_NovaNex.Controladores;
 
 
-import com.Santiago.Novanex.app_NovaNex.EntidadesOModelos.Clientes;
 import com.Santiago.Novanex.app_NovaNex.EntidadesOModelos.Productos;
-import com.Santiago.Novanex.app_NovaNex.Excepciones.ExceptionNoFound;
-import com.Santiago.Novanex.app_NovaNex.Repositorios.IRepositorioProductos;
+import com.Santiago.Novanex.app_NovaNex.Excepciones.ExcepcioGlobal;
 import com.Santiago.Novanex.app_NovaNex.Servicios.IServicioProductos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -31,7 +29,7 @@ public class ControladorProducto {
     public ResponseEntity<Productos> getProductoById(@PathVariable Integer id) {
         Productos productos = iServicioProductos.findProductosById(id);
         if (productos == null){
-            throw new ExceptionNoFound("El producto no existe:" + id);
+            throw new ExcepcioGlobal("El producto no existe:" + id);
         }
         return ResponseEntity.ok(productos);
     }
@@ -43,7 +41,7 @@ public class ControladorProducto {
     public ResponseEntity<Productos> putProductoById(@PathVariable Integer id, @RequestBody Productos productosObjeto) {
         Productos productos = iServicioProductos.findProductosById(id);
         if (productos == null){
-            throw new ExceptionNoFound("ID de producto no encontrado:" + id);
+            throw new ExcepcioGlobal("ID de producto no encontrado:" + id);
         }
         productos.setNombre(productosObjeto.getNombre());
         productos.setDescripcion(productosObjeto.getDescripcion());
@@ -58,7 +56,7 @@ public class ControladorProducto {
     public ResponseEntity<Map<String, Boolean>> deleteProductosById(@PathVariable Integer id){
         Productos productos = iServicioProductos.findProductosById(id);
         if (productos == null){
-            throw new ExceptionNoFound("ID de producto no encontrado:" + id);
+            throw new ExcepcioGlobal("ID de producto no encontrado:" + id);
         }
         iServicioProductos.deleteProductos(productos);
         Map<String,Boolean> response = new HashMap<>();

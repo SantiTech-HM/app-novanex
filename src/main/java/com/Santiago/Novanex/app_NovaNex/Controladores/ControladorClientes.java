@@ -2,7 +2,7 @@ package com.Santiago.Novanex.app_NovaNex.Controladores;
 
 
 import com.Santiago.Novanex.app_NovaNex.EntidadesOModelos.Clientes;
-import com.Santiago.Novanex.app_NovaNex.Excepciones.ExceptionNoFound;
+import com.Santiago.Novanex.app_NovaNex.Excepciones.ExcepcioGlobal;
 import com.Santiago.Novanex.app_NovaNex.Servicios.IServicioClientes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +29,7 @@ public class ControladorClientes {
     public ResponseEntity<Clientes> getClienteById(@PathVariable Integer id) {
        Clientes clientes = iServicioClientes.findClientesById(id);
        if (clientes == null){
-           throw new ExceptionNoFound("El cliente no existe:" + id);
+           throw new ExcepcioGlobal("El cliente no existe:" + id);
        }
        return ResponseEntity.ok(clientes);
     }
@@ -41,7 +41,7 @@ public class ControladorClientes {
     public ResponseEntity<Clientes> putClienteById(@PathVariable Integer id, @RequestBody Clientes clientesObjeto) {
         Clientes clientes = iServicioClientes.findClientesById(id);
         if (clientes == null){
-            throw new ExceptionNoFound("ID de cliente no encontrado:" + id);
+            throw new ExcepcioGlobal("ID de cliente no encontrado:" + id);
         }
         clientes.setNombre(clientesObjeto.getNombre());
         clientes.setApellidos(clientesObjeto.getApellidos());
@@ -58,7 +58,7 @@ public class ControladorClientes {
     public ResponseEntity<Map<String, Boolean>> deleteClientesById(@PathVariable Integer id){
         Clientes clientes = iServicioClientes.findClientesById(id);
         if (clientes == null){
-            throw new ExceptionNoFound("ID de cliente no encontrado:" + id);
+            throw new ExcepcioGlobal("ID de cliente no encontrado:" + id);
         }
         iServicioClientes.deleteClientes(clientes);
         Map<String,Boolean> response = new HashMap<>();

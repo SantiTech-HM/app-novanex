@@ -4,9 +4,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(value = HttpStatus.NOT_FOUND)
-public class ExceptionNoFound extends RuntimeException {
+public class ExcepcioGlobal extends RuntimeException {
 
-    public ExceptionNoFound(String s) {
+    public ExcepcioGlobal(String s) {
         super(s);
     }
 }

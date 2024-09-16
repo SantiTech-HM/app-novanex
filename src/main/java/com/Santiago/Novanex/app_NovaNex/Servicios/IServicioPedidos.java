@@ -10,15 +10,15 @@ public interface IServicioPedidos {
     public List<Pedidos> listPedidos();
     public Pedidos findPedidosById(Integer id);
     public Pedidos savePedidos(Pedidos pedido);
-    //public Pedidos updatePedidos(Integer id, Pedidos pedidoDetails);
+    public Pedidos updatePedidos(Integer id, Pedidos pedidosDetails);
     public void deletePedidos(Integer id);
 
 
 
-    public List<Pedidos> getPedidosPorCliente(Integer clienteId);
-    public List<Pedidos> getPedidosPorEstado(Integer estadoId);
-    public List<Pedidos> getPedidosPorEstadoDevolucion(Integer estadoDevolucionId);
-    public List<Pedidos> getPedidosPorMetodoPago(Integer metodoPagoId);
-    public List<Pedidos> getPedidosPorRangoFechas(LocalDateTime inicio, LocalDateTime fin);
+    public List<Pedidos> findPedidosPorCliente(Integer clienteId);
+    public List<Pedidos> findPedidosPorEstado(Integer estadoId);
+    public List<Pedidos> findPedidosPorEstadoDevolucion(Integer estadoDevolucionId);
+    public List<Pedidos> findPedidosPorMetodoPago(Integer metodoPagoId);
+    public List<Pedidos> findPedidosPorRangoFechas(LocalDateTime inicio, LocalDateTime fin);
 
 }

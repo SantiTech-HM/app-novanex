@@ -3,7 +3,7 @@ package com.Santiago.Novanex.app_NovaNex.Controladores;
 
 
 import com.Santiago.Novanex.app_NovaNex.EntidadesOModelos.MetodosPago;
-import com.Santiago.Novanex.app_NovaNex.Excepciones.ExceptionNoFound;
+import com.Santiago.Novanex.app_NovaNex.Excepciones.ExcepcioGlobal;
 import com.Santiago.Novanex.app_NovaNex.Servicios.IServicioMetodosPago;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -30,7 +30,7 @@ public class ControladorMetodosPago {
     public ResponseEntity<MetodosPago> getMetodoDePagoById(@PathVariable Integer id) {
         MetodosPago metodosPago = iServicioMetodosPago.findMetodosPagoById(id);
         if (metodosPago == null){
-            throw new ExceptionNoFound("el metodo de pago no existe:" + id);
+            throw new ExcepcioGlobal("el metodo de pago no existe:" + id);
         }
         return ResponseEntity.ok(metodosPago);
     }
@@ -43,7 +43,7 @@ public class ControladorMetodosPago {
     public ResponseEntity<MetodosPago> putMetodosPagoById(@PathVariable Integer id, @RequestBody MetodosPago metodosPagoObjeto){
         MetodosPago metodosPago = iServicioMetodosPago.findMetodosPagoById(id);
         if(metodosPago == null){
-            throw new ExceptionNoFound("ID del metodo de pago no encontrado:" + id);
+            throw new ExcepcioGlobal("ID del metodo de pago no encontrado:" + id);
 
         }
         metodosPago.setMetodo(metodosPagoObjeto.getMetodo());
@@ -56,7 +56,7 @@ public class ControladorMetodosPago {
     public ResponseEntity<Map<String, Boolean>> deleteMetodosPagoById(@PathVariable Integer id) {
         MetodosPago metodosPago = iServicioMetodosPago.findMetodosPagoById(id);
         if (metodosPago == null){
-            throw new ExceptionNoFound("ID metodo de pago no encontrado:" + id);
+            throw new ExcepcioGlobal("ID metodo de pago no encontrado:" + id);
         }
 
         iServicioMetodosPago.deleteMetodosPago(metodosPago);
