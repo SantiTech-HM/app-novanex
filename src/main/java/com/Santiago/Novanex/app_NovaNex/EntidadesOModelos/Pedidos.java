@@ -1,6 +1,7 @@
 package com.Santiago.Novanex.app_NovaNex.EntidadesOModelos;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,26 +21,29 @@ public class Pedidos {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-
-    @ManyToOne(fetch = FetchType.LAZY)
+    //@JsonIgnoreProperties
+    @ManyToOne
     @JoinColumn(name = "cliente_id", nullable = false)
     private Clientes clientes;
 
     @Column(name = "precio_total", nullable = false)
     private Double precioTotal;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    //@JsonIgnoreProperties
+    @ManyToOne
     @JoinColumn(name = "estado_id", nullable = false)
     private EstadosPedido estadosPedido;
 
-
-    @ManyToOne(fetch = FetchType.LAZY)
+    //@JsonIgnoreProperties
+    @ManyToOne
     @JoinColumn(name = "estado_devolucion_id")
     private EstadosDevolucion estadosDevolucion;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    //@JsonIgnoreProperties
+    @ManyToOne
     @JoinColumn(name = "metodo_pago_id", nullable = false)
     private MetodosPago metodosPago;
+
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "fecha_creacion", nullable = false)
