@@ -1,17 +1,16 @@
 package com.Santiago.Novanex.app_NovaNex.EntidadesOModelos;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 import java.time.LocalDateTime;
 
-
-@Data
 @Entity
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "pedidos")
@@ -21,33 +20,30 @@ public class Pedidos {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    //@JsonIgnoreProperties
     @ManyToOne
     @JoinColumn(name = "cliente_id", nullable = false)
     private Clientes clientes;
 
-    @Column(name = "precio_total", nullable = false)
-    private Double precioTotal;
-
-    //@JsonIgnoreProperties
     @ManyToOne
     @JoinColumn(name = "estado_id", nullable = false)
     private EstadosPedido estadosPedido;
 
-    //@JsonIgnoreProperties
     @ManyToOne
     @JoinColumn(name = "estado_devolucion_id")
     private EstadosDevolucion estadosDevolucion;
 
-    //@JsonIgnoreProperties
     @ManyToOne
     @JoinColumn(name = "metodo_pago_id", nullable = false)
     private MetodosPago metodosPago;
 
+    @Column(name = "precio_total", nullable = false)
+    private Double precioTotal;
 
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "fecha_creacion", nullable = false)
     private LocalDateTime fechaCreacion;
+
+    // Getters y Setters
+
 
     public Clientes getClientes() {
         return clientes;
@@ -55,14 +51,6 @@ public class Pedidos {
 
     public void setClientes(Clientes clientes) {
         this.clientes = clientes;
-    }
-
-    public Double getPrecioTotal() {
-        return precioTotal;
-    }
-
-    public void setPrecioTotal(Double precioTotal) {
-        this.precioTotal = precioTotal;
     }
 
     public EstadosPedido getEstadosPedido() {
@@ -87,6 +75,14 @@ public class Pedidos {
 
     public void setMetodosPago(MetodosPago metodosPago) {
         this.metodosPago = metodosPago;
+    }
+
+    public Double getPrecioTotal() {
+        return precioTotal;
+    }
+
+    public void setPrecioTotal(Double precioTotal) {
+        this.precioTotal = precioTotal;
     }
 
     public LocalDateTime getFechaCreacion() {

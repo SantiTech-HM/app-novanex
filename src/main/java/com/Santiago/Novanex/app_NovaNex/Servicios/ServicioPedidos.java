@@ -8,70 +8,44 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
-public class ServicioPedidos implements IServicioPedidos{
+public class ServicioPedidos implements IServicioPedidos {
 
     @Autowired
     private IRepositorioPedidos iRepositorioPedidos;
 
     @Override
-    public List<Pedidos> listPedidos() {
+    public Pedidos savePedido(Pedidos pedido) {
+
+        if (pedido.getPrecioTotal() == null || pedido.getPrecioTotal() <= 0) {
+            throw new ExcepcionDePedidos("El precio total debe ser mayor a cero.");
+        }
+        pedido.setFechaCreacion(LocalDateTime.now());
+        return iRepositorioPedidos.save(pedido);
+    }
+
+    @Override
+    public Pedidos updatePedido(Pedidos pedido) {
+        return null;
+    }
+
+    @Override
+    public Optional<Pedidos> findPedidoById(Integer id) {
+        return iRepositorioPedidos.findById(id);
+    }
+
+    @Override
+    public List<Pedidos> findAllPedidos() {
         return iRepositorioPedidos.findAll();
     }
 
     @Override
-    public Pedidos findPedidosById(Integer id) {
-        return iRepositorioPedidos.findById(id)
-                .orElseThrow(() -> new ExcepcionDePedidos("No se encontró el pedido con id: " + id));
-    }
-
-    @Override
-    public Pedidos savePedidos(Pedidos pedidos) {
-        pedidos.setFechaCreacion(LocalDateTime.now());
-        return iRepositorioPedidos.save(pedidos);
-    }
-
-    @Override
-    public Pedidos updatePedidos(Integer id, Pedidos pedidosDetails) {
-    Pedidos pedidos = findPedidosById(id);
-        pedidos.setClientes(pedidosDetails.getClientes());
-        pedidos.setEstadosPedido(pedidosDetails.getEstadosPedido());
-        pedidos.setEstadosDevolucion(pedidosDetails.getEstadosDevolucion());
-        pedidos.setMetodosPago(pedidosDetails.getMetodosPago());
-        pedidos.setPrecioTotal(pedidosDetails.getPrecioTotal());
-        pedidos.setFechaCreacion(pedidosDetails.getFechaCreacion());
-        return iRepositorioPedidos.save(pedidos);
-    }
-
-    @Override
-    public void deletePedidos(Integer id) {
-        Pedidos pedidos = findPedidosById(id);
-        iRepositorioPedidos.delete(pedidos);
-    }
-
-    @Override
-    public List<Pedidos> findPedidosPorCliente(Integer clienteId) {
-        return iRepositorioPedidos.findByClientesId(clienteId);
-    }
-
-    @Override
-    public List<Pedidos> findPedidosPorEstado(Integer estadoId) {
-        return iRepositorioPedidos.findByEstadosPedidoId(estadoId);
-    }
-
-    @Override
-    public List<Pedidos> findPedidosPorEstadoDevolucion(Integer estadoDevolucionId) {
-        return iRepositorioPedidos.findByEstadosDevolucionId(estadoDevolucionId);
-    }
-
-    @Override
-    public List<Pedidos> findPedidosPorMetodoPago(Integer metodoPagoId) {
-        return iRepositorioPedidos.findByMetodosPagoId(metodoPagoId);
-    }
-
-    @Override
-    public List<Pedidos> findPedidosPorRangoFechas(LocalDateTime inicio, LocalDateTime fin) {
-        return iRepositorioPedidos.findByFechaCreacionBetween(inicio, fin);
+    public void deletePedido(Integer id) {
+        if (!iRepositorioPedidos.existsById(id)) {
+            throw new ExcepcionDePedidos("Pedido no encontrado con ID: " + id);
+        }
+        iRepositorioPedidos.deleteById(id);
     }
 }
