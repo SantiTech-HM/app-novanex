@@ -42,8 +42,31 @@ public class Pedidos {
     @Column(name = "fecha_creacion", nullable = false)
     private LocalDateTime fechaCreacion;
 
-    // Getters y Setters
+    // Constructores
 
+//    public Pedidos() {
+//    }
+//
+//    public Pedidos(Integer id, Clientes clientes, EstadosPedido estadosPedido,
+//                   EstadosDevolucion estadosDevolucion, MetodosPago metodosPago,
+//                   Double precioTotal, LocalDateTime fechaCreacion) {
+//        this.id = id;
+//        this.clientes = clientes;
+//        this.estadosPedido = estadosPedido;
+//        this.estadosDevolucion = estadosDevolucion;
+//        this.metodosPago = metodosPago;
+//        this.precioTotal = precioTotal;
+//        this.fechaCreacion = fechaCreacion;
+//    }
+    // Getters y setters
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public Clientes getClientes() {
         return clientes;
@@ -91,5 +114,44 @@ public class Pedidos {
 
     public void setFechaCreacion(LocalDateTime fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
+    }
+
+    // Equals, hashCode y toString
+
+    // equals method
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Pedidos pedidos = (Pedidos) o;
+        return Object.equals(id, pedidos.id) &&
+                Object.equals(clientes, pedidos.clientes) &&
+                Object.equals(estadosPedido, pedidos.estadosPedido) &&
+                Object.equals(estadosDevolucion, pedidos.estadosDevolucion) &&
+                Object.equals(metodosPago, pedidos.metodosPago) &&
+                Object.equals(precioTotal, pedidos.precioTotal) &&
+                Object.equals(fechaCreacion, pedidos.fechaCreacion);
+    }
+
+    // hashCode method
+    @Override
+    public int hashCode() {
+        return Object.hash(id, clientes, estadosPedido, estadosDevolucion,
+                metodosPago, precioTotal, fechaCreacion);
+    }
+
+    // toString method
+    @Override
+    public String toString() {
+        return "Pedidos{" +
+                "id=" + id +
+                ", cliente=" + clientes +
+                ", estado=" + estadosPedido +
+                ", estadoDevolucion=" + estadosDevolucion +
+                ", metodoPago=" + metodosPago +
+                ", precioTotal=" + precioTotal +
+                ", fechaCreacion=" + fechaCreacion +
+                '}';
     }
 }

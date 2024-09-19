@@ -1,16 +1,17 @@
 package com.Santiago.Novanex.app_NovaNex.Servicios;
 
-import com.Santiago.Novanex.app_NovaNex.EntidadesOModelos.Pedidos;
+
+import com.Santiago.Novanex.app_NovaNex.ObjetoDeTransferenciaDeDatos.PedidosDTO;
 
 import java.util.List;
-import java.util.Optional;
+
 
 public interface IServicioPedidos {
 
-    public Pedidos savePedido(Pedidos pedido);
-    public Pedidos updatePedido(Integer id);
-    public Optional<Pedidos> findPedidoById(Integer id);
-    public List<Pedidos> findAllPedidos();
-    public void deletePedido(Integer id);
+    PedidosDTO crearPedido(PedidosDTO pedidoDTO);
+    PedidosDTO actualizarPedido(Integer id, PedidosDTO pedidoDTO);
+    void eliminarPedido(Integer id);
+    PedidosDTO obtenerPedidoPorId(Integer id);
+    List<PedidosDTO> listarTodosPedidos();
 }
 

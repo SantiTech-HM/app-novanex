@@ -2,50 +2,72 @@ package com.Santiago.Novanex.app_NovaNex.Servicios;
 
 import com.Santiago.Novanex.app_NovaNex.EntidadesOModelos.Pedidos;
 import com.Santiago.Novanex.app_NovaNex.Excepciones.ExcepcionDePedidos;
+import com.Santiago.Novanex.app_NovaNex.Mapeadores.IMapeadorPedidos;
+import com.Santiago.Novanex.app_NovaNex.ObjetoDeTransferenciaDeDatos.PedidosDTO;
 import com.Santiago.Novanex.app_NovaNex.Repositorios.IRepositorioPedidos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
+
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
+
 
 @Service
-public class ServicioPedidos implements IServicioPedidos {
+public class ServicioPedidos  implements IServicioPedidos{
+
+    private final IRepositorioPedidos iRepositorioPedidos;
+    private final IMapeadorPedidos iMapeadorPedidos;
 
     @Autowired
-    private IRepositorioPedidos iRepositorioPedidos;
-
-    @Override
-    public Pedidos savePedido(Pedidos pedido) {
-
-        if (pedido.getPrecioTotal() == null || pedido.getPrecioTotal() <= 0) {
-            throw new ExcepcionDePedidos("El precio total debe ser mayor a cero.");
-        }
-        pedido.setFechaCreacion(LocalDateTime.now());
-        return iRepositorioPedidos.save(pedido);
+    public ServicioPedidos(IRepositorioPedidos iRepositorioPedidos, IMapeadorPedidos iMapeadorPedidos) {
+        this.iRepositorioPedidos = iRepositorioPedidos;
+        this.iMapeadorPedidos = iMapeadorPedidos;
     }
 
     @Override
-    public Pedidos updatePedido(Pedidos pedido) {
-        return null;
+    @Transactional
+    public PedidosDTO crearPedido(PedidosDTO pedidoDTO) {
+        Pedidos pedido = iMapeadorPedidos.convertirAEntidad(pedidoDTO);
+        Pedidos pedidoGuardado = iRepositorioPedidos.save(pedido);
+        return iMapeadorPedidos.convertirADTO(pedidoGuardado);
     }
 
     @Override
-    public Optional<Pedidos> findPedidoById(Integer id) {
-        return iRepositorioPedidos.findById(id);
+    @Transactional
+    public PedidosDTO actualizarPedido(Integer id, PedidosDTO pedidoDTO) {
+        Pedidos pedidoExistente = iRepositorioPedidos.findById(id)
+                .orElseThrow(() -> new ExcepcionDePedidos("Pedido no encontrado con id: " + id));
+
+        iMapeadorPedidos.actualizarEntidadDesdeDTO(pedidoExistente, pedidoDTO);
+        Pedidos pedidoActualizado = iRepositorioPedidos.save(pedidoExistente);
+        return IMapeadorPedidos.convertirADTO(pedidoActualizado);
     }
 
     @Override
-    public List<Pedidos> findAllPedidos() {
-        return iRepositorioPedidos.findAll();
-    }
-
-    @Override
-    public void deletePedido(Integer id) {
-        if (!iRepositorioPedidos.existsById(id)) {
-            throw new ExcepcionDePedidos("Pedido no encontrado con ID: " + id);
+    @Transactional
+    public void eliminarPedido(Integer id) {
+        if (!IRepositorioPedidos.existsById(id)) {
+            throw new ExcepcionDePedidos("Pedido no encontrado con id: " + id);
         }
         iRepositorioPedidos.deleteById(id);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public PedidosDTO obtenerPedidoPorId(Integer id) {
+        Pedidos pedido = iRepositorioPedidos.findById(id)
+                .orElseThrow(() -> new ExcepcionDePedidos("Pedido no encontrado con id: " + id));
+        return iMapeadorPedidos.convertirADTO(pedido);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<PedidosDTO> listarTodosPedidos() {
+        List<Pedidos> pedidos = iRepositorioPedidos.findAll();
+        return pedidos.stream()
+                .map(iMapeadorPedidos::convertirADTO)
+                .collect(Collectors.toList());
     }
 }
