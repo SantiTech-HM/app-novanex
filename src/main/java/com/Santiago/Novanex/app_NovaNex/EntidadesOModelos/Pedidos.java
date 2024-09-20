@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Entity
 @Data
@@ -22,19 +23,19 @@ public class Pedidos {
 
     @ManyToOne
     @JoinColumn(name = "cliente_id", nullable = false)
-    private Clientes clientes;
+    private Clientes cliente;
 
     @ManyToOne
     @JoinColumn(name = "estado_id", nullable = false)
-    private EstadosPedido estadosPedido;
+    private EstadosPedido estadoPedido;
 
     @ManyToOne
     @JoinColumn(name = "estado_devolucion_id")
-    private EstadosDevolucion estadosDevolucion;
+    private EstadosDevolucion estadoDevolucion;
 
     @ManyToOne
     @JoinColumn(name = "metodo_pago_id", nullable = false)
-    private MetodosPago metodosPago;
+    private MetodosPago metodoPago;
 
     @Column(name = "precio_total", nullable = false)
     private Double precioTotal;
@@ -42,62 +43,38 @@ public class Pedidos {
     @Column(name = "fecha_creacion", nullable = false)
     private LocalDateTime fechaCreacion;
 
-    // Constructores
-
-//    public Pedidos() {
-//    }
-//
-//    public Pedidos(Integer id, Clientes clientes, EstadosPedido estadosPedido,
-//                   EstadosDevolucion estadosDevolucion, MetodosPago metodosPago,
-//                   Double precioTotal, LocalDateTime fechaCreacion) {
-//        this.id = id;
-//        this.clientes = clientes;
-//        this.estadosPedido = estadosPedido;
-//        this.estadosDevolucion = estadosDevolucion;
-//        this.metodosPago = metodosPago;
-//        this.precioTotal = precioTotal;
-//        this.fechaCreacion = fechaCreacion;
-//    }
     // Getters y setters
 
-    public Integer getId() {
-        return id;
+    public Clientes getCliente() {
+        return cliente;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setCliente(Clientes cliente) {
+        this.cliente = cliente;
     }
 
-    public Clientes getClientes() {
-        return clientes;
+    public EstadosPedido getEstadoPedido() {
+        return estadoPedido;
     }
 
-    public void setClientes(Clientes clientes) {
-        this.clientes = clientes;
+    public void setEstadoPedido(EstadosPedido estadoPedido) {
+        this.estadoPedido = estadoPedido;
     }
 
-    public EstadosPedido getEstadosPedido() {
-        return estadosPedido;
+    public EstadosDevolucion getEstadoDevolucion() {
+        return estadoDevolucion;
     }
 
-    public void setEstadosPedido(EstadosPedido estadosPedido) {
-        this.estadosPedido = estadosPedido;
+    public void setEstadoDevolucion(EstadosDevolucion estadoDevolucion) {
+        this.estadoDevolucion = estadoDevolucion;
     }
 
-    public EstadosDevolucion getEstadosDevolucion() {
-        return estadosDevolucion;
+    public MetodosPago getMetodoPago() {
+        return metodoPago;
     }
 
-    public void setEstadosDevolucion(EstadosDevolucion estadosDevolucion) {
-        this.estadosDevolucion = estadosDevolucion;
-    }
-
-    public MetodosPago getMetodosPago() {
-        return metodosPago;
-    }
-
-    public void setMetodosPago(MetodosPago metodosPago) {
-        this.metodosPago = metodosPago;
+    public void setMetodoPago(MetodosPago metodoPago) {
+        this.metodoPago = metodoPago;
     }
 
     public Double getPrecioTotal() {
@@ -116,8 +93,8 @@ public class Pedidos {
         this.fechaCreacion = fechaCreacion;
     }
 
-    // Equals, hashCode y toString
 
+    // Equals, hashCode
     // equals method
 
     @Override
@@ -125,20 +102,20 @@ public class Pedidos {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Pedidos pedidos = (Pedidos) o;
-        return Object.equals(id, pedidos.id) &&
-                Object.equals(clientes, pedidos.clientes) &&
-                Object.equals(estadosPedido, pedidos.estadosPedido) &&
-                Object.equals(estadosDevolucion, pedidos.estadosDevolucion) &&
-                Object.equals(metodosPago, pedidos.metodosPago) &&
-                Object.equals(precioTotal, pedidos.precioTotal) &&
-                Object.equals(fechaCreacion, pedidos.fechaCreacion);
+        return Objects.equals(id, pedidos.id) &&
+                Objects.equals(cliente, pedidos.cliente) &&
+                Objects.equals(estadoPedido, pedidos.estadoPedido) &&
+                Objects.equals(estadoDevolucion, pedidos.estadoDevolucion) &&
+                Objects.equals(metodoPago, pedidos.metodoPago) &&
+                Objects.equals(precioTotal, pedidos.precioTotal) &&
+                Objects.equals(fechaCreacion, pedidos.fechaCreacion);
     }
 
     // hashCode method
     @Override
     public int hashCode() {
-        return Object.hash(id, clientes, estadosPedido, estadosDevolucion,
-                metodosPago, precioTotal, fechaCreacion);
+        return Objects.hash(id, cliente, estadoPedido, estadoDevolucion,
+                metodoPago, precioTotal, fechaCreacion);
     }
 
     // toString method
@@ -146,10 +123,10 @@ public class Pedidos {
     public String toString() {
         return "Pedidos{" +
                 "id=" + id +
-                ", cliente=" + clientes +
-                ", estado=" + estadosPedido +
-                ", estadoDevolucion=" + estadosDevolucion +
-                ", metodoPago=" + metodosPago +
+                ", cliente=" + cliente +
+                ", estado=" + estadoPedido +
+                ", estadoDevolucion=" + estadoDevolucion +
+                ", metodoPago=" + metodoPago +
                 ", precioTotal=" + precioTotal +
                 ", fechaCreacion=" + fechaCreacion +
                 '}';

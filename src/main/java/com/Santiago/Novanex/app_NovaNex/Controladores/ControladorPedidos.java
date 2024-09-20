@@ -10,11 +10,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/pedidos")
+@RequestMapping("/api/v7/")
+@CrossOrigin(value = "http://localhost:4200")
 public class ControladorPedidos {
-    private final IServicioPedidos iServicioPedidos;
+
+
 
     @Autowired
+    private final IServicioPedidos iServicioPedidos;
+
     public ControladorPedidos(IServicioPedidos iServicioPedidos) {
         this.iServicioPedidos = iServicioPedidos;
     }

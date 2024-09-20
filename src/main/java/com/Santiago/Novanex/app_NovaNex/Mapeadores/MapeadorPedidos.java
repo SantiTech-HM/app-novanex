@@ -29,8 +29,8 @@ public class MapeadorPedidos implements IMapeadorPedidos{
     public PedidosDTO convertirADTO(Pedidos pedido) {
         PedidosDTO dto = new PedidosDTO();
         dto.setId(pedido.getId());
-        dto.setClienteId(pedido.getClientes().getId());
-        dto.setEstadoId(pedido.getEstadosPedido().getId());
+        dto.setClienteId(pedido.getCliente().getId());
+        dto.setEstadoId(pedido.getEstadoPedido().get());
         if (pedido.getEstadoDevolucion() != null) {
             dto.setEstadoDevolucionId(pedido.getEstadoDevolucion().getId());
         }
@@ -65,27 +65,27 @@ public class MapeadorPedidos implements IMapeadorPedidos{
         if (dto.getClienteId() != null) {
             Clientes cliente = iRepositorioClientes.findById(dto.getClienteId())
                     .orElseThrow(() -> new ExcepcionDePedidos("Cliente no encontrado con ID: " + dto.getClienteId()));
-            pedido.setClientes(cliente);
+            pedido.setCliente(cliente);
         }
 
         if (dto.getEstadoId() != null) {
-            EstadosPedido estadosPedido = iRepositorioEstadosPedido.findById(dto.getEstadoId())
+            EstadosPedido estadoPedido = iRepositorioEstadosPedido.findById(dto.getEstadoId())
                     .orElseThrow(() -> new ExcepcionDePedidos("Estado del pedido no encontrado con ID: " + dto.getEstadoId()));
-            pedido.setEstadosPedido(estadosPedido);
+            pedido.setEstadoPedido(estadoPedido);
         }
 
         if (dto.getEstadoDevolucionId() != null) {
-            EstadosDevolucion estadosDevolucion = iReposirorioEstadosDevolucion.findById(dto.getEstadoDevolucionId())
+            EstadosDevolucion estadoDevolucion = iReposirorioEstadosDevolucion.findById(dto.getEstadoDevolucionId())
                     .orElseThrow(() -> new ExcepcionDePedidos("Estado de Devolucion no encontrado con ID: " + dto.getEstadoDevolucionId()));
-            pedido.setEstadosDevolucion(estadosDevolucion);
+            pedido.setEstadoDevolucion(estadoDevolucion);
         } else {
-            pedido.setEstadosDevolucion(null);
+            pedido.setEstadoDevolucion(null);
         }
 
         if (dto.getMetodoPagoId() != null) {
-            MetodosPago metodosPago = iRepositorioMetodosPago.findById(dto.getMetodoPagoId())
+            MetodosPago metodoPago = iRepositorioMetodosPago.findById(dto.getMetodoPagoId())
                     .orElseThrow(() -> new ExcepcionDePedidos("Metodo de Pago no encontrado con ID: " + dto.getMetodoPagoId()));
-            pedido.setMetodosPago(metodosPago);
+            pedido.setMetodoPago(metodoPago);
         }
     }
 

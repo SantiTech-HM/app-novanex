@@ -42,13 +42,13 @@ public class ServicioPedidos  implements IServicioPedidos{
 
         iMapeadorPedidos.actualizarEntidadDesdeDTO(pedidoExistente, pedidoDTO);
         Pedidos pedidoActualizado = iRepositorioPedidos.save(pedidoExistente);
-        return IMapeadorPedidos.convertirADTO(pedidoActualizado);
+        return iMapeadorPedidos.convertirADTO(pedidoActualizado);
     }
 
     @Override
     @Transactional
     public void eliminarPedido(Integer id) {
-        if (!IRepositorioPedidos.existsById(id)) {
+        if (!iRepositorioPedidos.existsById(id)) {
             throw new ExcepcionDePedidos("Pedido no encontrado con id: " + id);
         }
         iRepositorioPedidos.deleteById(id);

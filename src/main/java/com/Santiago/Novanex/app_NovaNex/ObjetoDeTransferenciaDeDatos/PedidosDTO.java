@@ -13,21 +13,6 @@ public class PedidosDTO {
     private Double precioTotal;
     private LocalDateTime fechaCreacion;
 
-    // Constructor, getters y setters
-
-    public PedidosDTO() {
-    }
-
-    public PedidosDTO(Integer id, Integer clienteId, Integer estadoId, Integer estadoDevolucionId,
-                      Integer metodoPagoId, Double precioTotal, LocalDateTime fechaCreacion) {
-        this.id = id;
-        this.clienteId = clienteId;
-        this.estadoId = estadoId;
-        this.estadoDevolucionId = estadoDevolucionId;
-        this.metodoPagoId = metodoPagoId;
-        this.precioTotal = precioTotal;
-        this.fechaCreacion = fechaCreacion;
-    }
 
     // Getters y setters para todos los campos
 
@@ -87,16 +72,5 @@ public class PedidosDTO {
     public void setFechaCreacion(LocalDateTime fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
-    @Override
-    public String toString() {
-        return "PedidosDTO{" +
-                "id=" + id +
-                ", clienteId=" + clienteId +
-                ", estadoId=" + estadoId +
-                ", estadoDevolucionId=" + estadoDevolucionId +
-                ", metodoPagoId=" + metodoPagoId +
-                ", precioTotal=" + precioTotal +
-                ", fechaCreacion=" + fechaCreacion +
-                '}';
-    }
+
 }
