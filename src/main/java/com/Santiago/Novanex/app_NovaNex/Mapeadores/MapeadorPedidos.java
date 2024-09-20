@@ -26,11 +26,13 @@ public class MapeadorPedidos implements IMapeadorPedidos{
     private IRepositorioMetodosPago iRepositorioMetodosPago;
 
     @Override
-    public PedidosDTO convertirADTO(Pedidos pedido) {
+    public PedidosDTO convertirADTO(Pedidos pedido, Clientes cliente) {
+
         PedidosDTO dto = new PedidosDTO();
         dto.setId(pedido.getId());
-        dto.setClienteId(pedido.getCliente().getId());
+        dto.setClienteId(cliente.getId());
         dto.setEstadoId(pedido.getEstadoPedido().getId());
+
         if (pedido.getEstadoDevolucion() != null) {
             dto.setEstadoDevolucionId(pedido.getEstadoDevolucion().getId());
         }
@@ -39,6 +41,8 @@ public class MapeadorPedidos implements IMapeadorPedidos{
         dto.setFechaCreacion(pedido.getFechaCreacion());
         return dto;
     }
+
+
 
     @Override
     public Pedidos convertirAEntidad(PedidosDTO dto) {

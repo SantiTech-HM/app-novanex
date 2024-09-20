@@ -1,5 +1,7 @@
 package com.Santiago.Novanex.app_NovaNex.ObjetoDeTransferenciaDeDatos;
 
+import com.Santiago.Novanex.app_NovaNex.EntidadesOModelos.Clientes;
+
 import java.time.LocalDateTime;
 
 public class PedidosDTO {
@@ -16,6 +18,10 @@ public class PedidosDTO {
 
     // Getters y setters para todos los campos
 
+
+    public PedidosDTO() {
+
+    }
 
     public Integer getId() {
         return id;

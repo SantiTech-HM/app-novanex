@@ -38,6 +38,7 @@ public class Clientes {
     @Column(name = "fecha_nacimiento")
     private LocalDate fechaNacimiento;
 
+
     public Integer getId() {
         return id;
     }
