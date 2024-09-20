@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public interface IMapeadorPedidos {
 
-    PedidosDTO convertirADTO(Pedidos pedidos);
-    Pedidos convertirAEntidad(PedidosDTO dto);
-    void actualizarEntidadDesdeDTO(Pedidos pedido, PedidosDTO dto);
+    public PedidosDTO convertirADTO(Pedidos pedidos);
+    public Pedidos convertirAEntidad(PedidosDTO dto);
+    public void actualizarEntidadDesdeDTO(Pedidos pedido, PedidosDTO dto);
 }

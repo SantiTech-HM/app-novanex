@@ -45,6 +45,15 @@ public class Pedidos {
 
     // Getters y setters
 
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public Clientes getCliente() {
         return cliente;
     }
@@ -94,41 +103,41 @@ public class Pedidos {
     }
 
 
-    // Equals, hashCode
-    // equals method
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Pedidos pedidos = (Pedidos) o;
-        return Objects.equals(id, pedidos.id) &&
-                Objects.equals(cliente, pedidos.cliente) &&
-                Objects.equals(estadoPedido, pedidos.estadoPedido) &&
-                Objects.equals(estadoDevolucion, pedidos.estadoDevolucion) &&
-                Objects.equals(metodoPago, pedidos.metodoPago) &&
-                Objects.equals(precioTotal, pedidos.precioTotal) &&
-                Objects.equals(fechaCreacion, pedidos.fechaCreacion);
-    }
-
-    // hashCode method
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, cliente, estadoPedido, estadoDevolucion,
-                metodoPago, precioTotal, fechaCreacion);
-    }
-
-    // toString method
-    @Override
-    public String toString() {
-        return "Pedidos{" +
-                "id=" + id +
-                ", cliente=" + cliente +
-                ", estado=" + estadoPedido +
-                ", estadoDevolucion=" + estadoDevolucion +
-                ", metodoPago=" + metodoPago +
-                ", precioTotal=" + precioTotal +
-                ", fechaCreacion=" + fechaCreacion +
-                '}';
-    }
+//    // Equals, hashCode
+//    // equals method
+//
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        Pedidos pedidos = (Pedidos) o;
+//        return Objects.equals(id, pedidos.id) &&
+//                Objects.equals(cliente, pedidos.cliente) &&
+//                Objects.equals(estadoPedido, pedidos.estadoPedido) &&
+//                Objects.equals(estadoDevolucion, pedidos.estadoDevolucion) &&
+//                Objects.equals(metodoPago, pedidos.metodoPago) &&
+//                Objects.equals(precioTotal, pedidos.precioTotal) &&
+//                Objects.equals(fechaCreacion, pedidos.fechaCreacion);
+//    }
+//
+//    // hashCode method
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(id, cliente, estadoPedido, estadoDevolucion,
+//                metodoPago, precioTotal, fechaCreacion);
+//    }
+//
+//    // toString method
+//    @Override
+//    public String toString() {
+//        return "Pedidos{" +
+//                "id=" + id +
+//                ", cliente=" + cliente +
+//                ", estado=" + estadoPedido +
+//                ", estadoDevolucion=" + estadoDevolucion +
+//                ", metodoPago=" + metodoPago +
+//                ", precioTotal=" + precioTotal +
+//                ", fechaCreacion=" + fechaCreacion +
+//                '}';
+//    }
 }

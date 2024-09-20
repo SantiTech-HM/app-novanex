@@ -19,6 +19,14 @@ public class EstadosPedido {
     @Column(name = "estado")
     private String estado;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public String getEstado() {
         return estado;
     }

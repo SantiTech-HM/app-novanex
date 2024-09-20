@@ -8,10 +8,10 @@ import java.util.List;
 
 public interface IServicioPedidos {
 
-    PedidosDTO crearPedido(PedidosDTO pedidoDTO);
-    PedidosDTO actualizarPedido(Integer id, PedidosDTO pedidoDTO);
-    void eliminarPedido(Integer id);
-    PedidosDTO obtenerPedidoPorId(Integer id);
-    List<PedidosDTO> listarTodosPedidos();
+    public PedidosDTO crearPedido(PedidosDTO pedidoDTO);
+    public PedidosDTO actualizarPedido(Integer id, PedidosDTO pedidoDTO);
+    public void eliminarPedido(Integer id);
+    public PedidosDTO obtenerPedidoPorId(Integer id);
+    public List<PedidosDTO> listarTodosPedidos();
 }
 

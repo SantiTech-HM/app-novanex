@@ -13,21 +13,15 @@ public interface IRepositorioPedidos extends JpaRepository<Pedidos, Integer> {
 
 
 
-    List<Pedidos> findByClienteId(Integer clienteId);
-
-    List<Pedidos> findByEstadoPedidoId(Integer estadoId);
-
-    List<Pedidos> findByMetodoPagoId(Integer metodoPagoId);
-
-    List<Pedidos> findByEstadoDevolucionId(Integer estadoDevolucionId);
-
-    List<Pedidos> findByFechaCreacionBetween(LocalDateTime fechaInicio, LocalDateTime fechaFin);
-
-
-
-
-
-
+//    public List<Pedidos> findByClienteId(Integer clienteId);
+//
+//    public List<Pedidos> findByEstadoPedidoId(Integer estadoId);
+//
+//    public List<Pedidos> findByMetodoPagoId(Integer metodoPagoId);
+//
+//    public List<Pedidos> findByEstadoDevolucionId(Integer estadoDevolucionId);
+//
+//    public List<Pedidos> findByFechaCreacionBetween(LocalDateTime fechaInicio, LocalDateTime fechaFin);
 
 
 }

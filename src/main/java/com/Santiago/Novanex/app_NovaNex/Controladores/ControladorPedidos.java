@@ -23,31 +23,31 @@ public class ControladorPedidos {
         this.iServicioPedidos = iServicioPedidos;
     }
 
-    @PostMapping
+    @PostMapping("pedido")
     public ResponseEntity<PedidosDTO> crearPedido(@RequestBody PedidosDTO pedidoDTO) {
         PedidosDTO nuevoPedido = iServicioPedidos.crearPedido(pedidoDTO);
         return new ResponseEntity<>(nuevoPedido, HttpStatus.CREATED);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("pedido/{id}")
     public ResponseEntity<PedidosDTO> actualizarPedido(@PathVariable Integer id, @RequestBody PedidosDTO pedidoDTO) {
         PedidosDTO pedidoActualizado = iServicioPedidos.actualizarPedido(id, pedidoDTO);
         return ResponseEntity.ok(pedidoActualizado);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("pedido/{id}")
     public ResponseEntity<Void> eliminarPedido(@PathVariable Integer id) {
         iServicioPedidos.eliminarPedido(id);
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("pedido/{id}")
     public ResponseEntity<PedidosDTO> obtenerPedidoPorId(@PathVariable Integer id) {
         PedidosDTO pedido = iServicioPedidos.obtenerPedidoPorId(id);
         return ResponseEntity.ok(pedido);
     }
 
-    @GetMapping
+    @GetMapping("pedidos")
     public ResponseEntity<List<PedidosDTO>> listarTodosPedidos() {
         List<PedidosDTO> pedidos = iServicioPedidos.listarTodosPedidos();
         return ResponseEntity.ok(pedidos);

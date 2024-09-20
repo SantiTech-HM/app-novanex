@@ -30,7 +30,7 @@ public class MapeadorPedidos implements IMapeadorPedidos{
         PedidosDTO dto = new PedidosDTO();
         dto.setId(pedido.getId());
         dto.setClienteId(pedido.getCliente().getId());
-        dto.setEstadoId(pedido.getEstadoPedido().get());
+        dto.setEstadoId(pedido.getEstadoPedido().getId());
         if (pedido.getEstadoDevolucion() != null) {
             dto.setEstadoDevolucionId(pedido.getEstadoDevolucion().getId());
         }
@@ -58,25 +58,27 @@ public class MapeadorPedidos implements IMapeadorPedidos{
             throw new ExcepcionDePedidos("Pedido o DTO no pueden ser null");
         }
 
-
         pedido.setPrecioTotal(dto.getPrecioTotal());
         pedido.setFechaCreacion(dto.getFechaCreacion());
 
         if (dto.getClienteId() != null) {
             Clientes cliente = iRepositorioClientes.findById(dto.getClienteId())
-                    .orElseThrow(() -> new ExcepcionDePedidos("Cliente no encontrado con ID: " + dto.getClienteId()));
+                    .orElseThrow(() -> new ExcepcionDePedidos("Cliente no encontrado con ID: "
+                            + dto.getClienteId()));
             pedido.setCliente(cliente);
         }
 
         if (dto.getEstadoId() != null) {
             EstadosPedido estadoPedido = iRepositorioEstadosPedido.findById(dto.getEstadoId())
-                    .orElseThrow(() -> new ExcepcionDePedidos("Estado del pedido no encontrado con ID: " + dto.getEstadoId()));
+                    .orElseThrow(() -> new ExcepcionDePedidos("Estado del pedido no encontrado con ID: "
+                            + dto.getEstadoId()));
             pedido.setEstadoPedido(estadoPedido);
         }
 
         if (dto.getEstadoDevolucionId() != null) {
             EstadosDevolucion estadoDevolucion = iReposirorioEstadosDevolucion.findById(dto.getEstadoDevolucionId())
-                    .orElseThrow(() -> new ExcepcionDePedidos("Estado de Devolucion no encontrado con ID: " + dto.getEstadoDevolucionId()));
+                    .orElseThrow(() -> new ExcepcionDePedidos("Estado de Devolucion no encontrado con ID: "
+                            + dto.getEstadoDevolucionId()));
             pedido.setEstadoDevolucion(estadoDevolucion);
         } else {
             pedido.setEstadoDevolucion(null);
@@ -84,7 +86,8 @@ public class MapeadorPedidos implements IMapeadorPedidos{
 
         if (dto.getMetodoPagoId() != null) {
             MetodosPago metodoPago = iRepositorioMetodosPago.findById(dto.getMetodoPagoId())
-                    .orElseThrow(() -> new ExcepcionDePedidos("Metodo de Pago no encontrado con ID: " + dto.getMetodoPagoId()));
+                    .orElseThrow(() -> new ExcepcionDePedidos("Metodo de Pago no encontrado con ID: "
+                            + dto.getMetodoPagoId()));
             pedido.setMetodoPago(metodoPago);
         }
     }
