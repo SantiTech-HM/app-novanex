@@ -11,8 +11,5 @@ public class ExcepcionDePedidos extends RuntimeException {
         super(mensaje);
     }
 
-//    public ExcepcionDePedidos(String mensaje, Throwable causa) {
-//        super(mensaje, causa);
-//    }
 }
 
