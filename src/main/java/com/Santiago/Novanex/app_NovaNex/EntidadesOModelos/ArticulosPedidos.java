@@ -18,7 +18,7 @@ public class ArticulosPedidos {
 
     @ManyToOne
     @JoinColumn(name = "pedido_id" , nullable = false)
-    private Pedidos pedidos;
+    private Pedidos pedido;
 
     @ManyToOne
     @JoinColumn(name = "producto_id" , nullable = false)
@@ -38,12 +38,12 @@ public class ArticulosPedidos {
         this.id = id;
     }
 
-    public Pedidos getPedidos() {
-        return pedidos;
+    public Pedidos getPedido() {
+        return pedido;
     }
 
-    public void setPedidos(Pedidos pedidos) {
-        this.pedidos = pedidos;
+    public void setPedido(Pedidos pedido) {
+        this.pedido = pedido;
     }
 
     public Productos getProducto() {
