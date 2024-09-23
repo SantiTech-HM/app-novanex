@@ -30,7 +30,7 @@ public class Pedidos {
     private EstadosPedido estadoPedido;
 
     @ManyToOne
-    @JoinColumn(name = "estado_devolucion_id")
+    @JoinColumn(name = "estado_devolucion_id" , nullable = false)
     private EstadosDevolucion estadoDevolucion;
 
     @ManyToOne
